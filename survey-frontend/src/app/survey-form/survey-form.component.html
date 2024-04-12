@@ -1,0 +1,214 @@
+<!--Author: Pranay Teja Nallabothula
+G Number: G01409390 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="survey-form.component.css">
+    
+    <!-- <link rel="stylesheet" href="styles/surveyStyles.css">-->
+</head>
+
+<body>
+    <!-- Heading for the feedback form -->
+    <h1 class="heading">Student Survey Form</h1>
+
+    <div class="content">
+        <div class="container">
+            <!-- Feedback Form -->
+            <form class="mb-5" id="contactForm" name="contactForm" autocomplete="on" [formGroup]="surveyForm"
+                (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="row">
+                                <!-- FirstName Input -->
+                                <div class="col-md-6 form-group">
+                                    <label for="firstName" class="col-form-label required">FirstName</label>
+                                    <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                                        placeholder="pranay" autofocus required>
+                                </div>
+
+                                <div class="col-md-6 form-group">
+                                    <label for="lastName" class="col-form-label required">LastName</label>
+                                    <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                                        placeholder="nallabothula" autofocus required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Email Input -->
+                                <div class="col-md-6 form-group">
+                                    <label for="email" class=" col-form-label required">Email</label>
+                                    <input type="text" class="form-control" id="email" formControlName="email"
+                                        placeholder=" pnsw@gmail.com" required>
+                                </div>
+                                <!--Telephone Number-->
+                                <div class="col-md-6 form-group">
+                                    <label for="Telephone_Number" class="col-form-label required">Telephone
+                                        Number</label>
+                                    <input type="text" class="form-control" id="Telephone_Number"
+                                        formControlName="telephoneNumber" placeholder="5715803011" required>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <!-- Street Address Input -->
+                                <div class="col-md-12 form-group">
+                                    <label for="street_address" class="col-form-label required">Street Address</label>
+                                    <input type="text" class="form-control" id="street_address"
+                                        formControlName="streetAddress" placeholder=" 4400 University Drive" required>
+                                </div>
+                            </div>
+
+
+                            <!-- City, State, and Zip Inputs -->
+                            <div class="row">
+
+                                <div class="col-md-4 form-group">
+                                    <label for="zip" class="col-form-label required">Zip </label>
+                                    <input type="text" class="form-control" id="zip" formControlName="zip" maxlength="5"
+                                        placeholder="22030" required>
+                                    <span id="zipError" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label for="city" class="col-form-label required">City </label>
+                                    <input type="text" class="form-control" id="city" formControlName="city"
+                                        placeholder="Fairfax" required>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label for="state" class="col-form-label required">State </label>
+                                    <input type="text" class="form-control" id="state" formControlName="state"
+                                        maxlength="5" placeholder=" VA" required>
+                                </div>
+
+                            </div>
+                            <!-- Survey Date Input -->
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="survey_date" class="col-form-label required">Date of Survey </label>
+                                    <input type="date" class="form-control" id="survey_date"
+                                        formControlName="surveyDate" placeholder="MM-DD-YYYY" required>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="box">
+                            <!-- Question: What did you like most about the campus? -->
+                            <h4>What did you like most about the campus?</h4>
+                            <!-- Liked Options(checkbox): Students, Location, Campus, Atmosphere, Dorm Rooms, Sports -->
+                            <div formGroupName="liked">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="students" formControlName="students">
+                                        <label for="students" class="col-form-label">Students</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="location" formControlName="location">
+                                        <label for="location" class="col-form-label">Location</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="campus" formControlName="campus">
+                                        <label for="campus" class="col-form-label">Campus</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="atmosphere" formControlName="atmosphere">
+                                        <label for="atmosphere" class="col-form-label">Atmosphere</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="dorm_rooms" formControlName="dormRooms">
+                                        <label for="dorm_rooms" class="col-form-label">Dorm Rooms</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="sports" formControlName="sports">
+                                        <label for="sports" class="col-form-label">Sports</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- How Became Interested in the University -->
+                            <h4>How did you become interested in the university?</h4>
+                            <!-- Interest Options(radio type): Friends, Television, Internet, Other -->
+                            <div>
+                                <input type="radio" formControlName="interest" id="friends" value="friends">
+                                <label for="friends" class="col-form-label">Friends</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="television" formControlName="interest" value="television">
+                                <label for="television" class="col-form-label">Television</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="internet" formControlName="interest" value="internet">
+                                <label for="internet" class="col-form-label">Internet</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" id="other" formControlName="interest" value="other">
+                                <label for="other" class="col-form-label">Other</label>
+                            </div>
+                            <!-- Additional Comments -->
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="comments" class="col-form-label required">Additional Comments </label>
+                                    <textarea class="form-control" id="comments" formControlName="comments" cols="30"
+                                        rows="7" placeholder="Enter your comments here" required></textarea>
+                                </div>
+                            </div>
+                            <!-- Likelihood of Recommending -->
+                            <div class="row mb-3">
+                                <div class="col-md-6 form-group">
+                                    <label for="recommend" class="col-form-label required">Likelihood of Recommending
+                                    </label>
+                                    <select id="recommend" formControlName="recommend" required>
+                                        <option value="">Please Select an option</option>
+                                        <option value="very_likely">Very Likely</option>
+                                        <option value="likely">Likely</option>
+                                        <option value="unlikely">Unlikely</option>
+                                    </select><br>
+                                </div>
+
+                            </div>
+                            <!-- Submit Button -->
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <!-- <input type="submit" value="Submit"
+                                        class="btn btn-block btn-primary rounded-0 py-2 px-4"> -->
+                                    <button class="btn btn-block btn-primary rounded-0 py-2 px-4" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    
+                                    <button (click)="resetForm()" class="btn btn-block btn-secondary rounded-0 py-2 px-4">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

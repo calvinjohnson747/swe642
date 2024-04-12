@@ -1,0 +1,49 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<h1 class="display-4 text-center "> Student Survey </h1>
+<hr>
+<div *ngIf="surveyStudents.length > 0; else noData">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Survey Date</th>
+                <th>Interests</th>
+                <th>Liked</th>
+                <th>Comments</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of surveyStudents">
+                <td>{{ student.firstName }} {{ student.lastName }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.city }}</td>
+                <td>{{ student.surveyDate | date }}</td>
+                <td>{{ student.interest }}</td>
+                <td>
+                    <span *ngIf="student.liked.students">Students </span>
+                    <span *ngIf="student.liked.location">Location </span>
+                    <span *ngIf="student.liked.atmosphere">Atmosphere </span>
+                    <span *ngIf="student.liked.campus">Campus </span>
+                    <span *ngIf="student.liked.dormRooms">Dorm Rooms</span>
+                    <span *ngIf="student.liked.sports">Sports </span>
+                    <!-- Add other liked conditions as needed -->
+                </td>
+                <td>{{ student.comments }}</td>
+                <td><button class="btn btn-danger" (click)="deleteStudent(student.id)">Delete</button></td>
+                <td><button class="btn btn-primary" (click)="updateStudent(student.id)">Update</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noData>
+    <p>No survey data available.</p>
+</ng-template>
