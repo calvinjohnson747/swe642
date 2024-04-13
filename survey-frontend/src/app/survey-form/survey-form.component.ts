@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SurveyFormComponent {
   private submitUrl = 'http://localhost:8080/saveStudents';
   surveyForm!: FormGroup;
+  zipData: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +23,7 @@ export class SurveyFormComponent {
       lastName: ['', Validators.pattern('^[a-zA-Z ]*$')],
       email: ['', [Validators.required, Validators.email]],
       telephoneNumber: ['', Validators.required],
-      streetAddress: ['', Validators.pattern('^[a-zA-Z0-9\s]*$')],
+      streetAddress: ['', Validators.pattern('^[a-zA-Z0-9\\s]*$')],
       city: ['', Validators.required],
       state: ['', Validators.required],
       zip: ['', [Validators.required, Validators.maxLength(5)]],
@@ -39,7 +40,9 @@ export class SurveyFormComponent {
       comments: ['', Validators.required],
       recommend: ['', Validators.required],
     });
-  }
+
+   }
+  
 
   onSubmit() {
     if (this.surveyForm && this.surveyForm.valid) {
@@ -49,56 +52,66 @@ export class SurveyFormComponent {
         error: (error) => console.error('Error submitting survey', error),
       });
     } else {
-      // Validation checks
-      const errors = [];
+       // Validation checks
+       const errors = [];
   
-      // Check username for alphabets only
-      const firstNameControl = this.surveyForm?.get('firstName');
-      console.log('First Name Control:', firstNameControl);
-      if (firstNameControl && !/^[a-zA-Z ]*$/.test(firstNameControl.value)) {
-        errors.push("First Name should contain only alphabets.");
-      }
-  
-      const lastNameControl = this.surveyForm?.get('lastName');
-      console.log('Last Name Control:', lastNameControl);
-      if (lastNameControl && !/^[a-zA-Z ]*$/.test(lastNameControl.value)) {
-        errors.push("Last Name should contain only alphabets.");
-      }
-  
-      // Check email format
-      const emailControl = this.surveyForm?.get('email');
-      console.log('Email Control:', emailControl);
-      if (emailControl && !emailControl.valid) {
-        errors.push("Invalid email format.");
-      }
-  
-      // Check if the street address contains only appropriate characters
-      const streetAddressControl = this.surveyForm?.get('streetAddress');
-      console.log('Street Address Control:', streetAddressControl);
-      if (streetAddressControl && !/^[a-zA-Z0-9\s]*$/.test(streetAddressControl.value)) {
-        errors.push("Street address should contain only appropriate characters (numeric, alphabet or alphanumeric characters).");
-      }
-  
-      // Check at least two checkboxes are checked
-      const likedControl = this.surveyForm?.get('liked');
-      console.log('Liked Control:', likedControl);
-    // Check if likedControl is not null before accessing its value
-    if (likedControl) {
-      const likedCheckboxes = likedControl.value;
-      const checkedCount = Object.values(likedCheckboxes).filter(checked => checked).length;
-      if (checkedCount < 2) {
-        errors.push("Select at least two options from 'What did you like most about the campus?'");
-      }
-    } else {
-      errors.push("Liked options are not available.");
-    }
-  
-      // Check if a radio button option is selected
-      const interestControl = this.surveyForm?.get('interest');
-      console.log('Intrest Control:', interestControl);
-      if (!interestControl || !interestControl.value) {
-        errors.push("Select an option for 'How did you become interested in the university?'");
-      }
+       // Check username for alphabets only
+       const firstNameControl = this.surveyForm?.get('firstName');
+       if (firstNameControl && !/^[a-zA-Z ]*$/.test(firstNameControl.value)) {
+         errors.push("First Name should contain only alphabets.");
+         // Clear the field with error
+         firstNameControl.setValue('')
+       }
+   
+       const lastNameControl = this.surveyForm?.get('lastName');
+       if (lastNameControl && !/^[a-zA-Z ]*$/.test(lastNameControl.value)) {
+         errors.push("Last Name should contain only alphabets.");
+         // Clear the field with error
+         lastNameControl.setValue('');
+       }
+   
+       // Check email format
+       const emailControl = this.surveyForm?.get('email');
+       if (emailControl && !emailControl.valid) {
+         errors.push("Invalid email format.");
+         // Clear the field with error
+          emailControl.setValue('');
+ 
+       }
+   
+       // Check if the street address contains only appropriate characters
+       const streetAddressControl = this.surveyForm?.get('streetAddress');
+       if (streetAddressControl && !/^[a-zA-Z0-9\s]*$/.test(streetAddressControl.value)) {
+         errors.push("Street address should contain only appropriate characters (numeric, alphabet or alphanumeric characters).");
+         // Clear the field with error
+         streetAddressControl.setValue('');
+       }
+   
+       // Check at least two checkboxes are checked
+       const likedControl = this.surveyForm?.get('liked');
+       if (likedControl) {
+         const likedCheckboxes = likedControl.value;
+         const checkedCount = Object.values(likedCheckboxes).filter(checked => checked).length;
+         if (checkedCount < 2) {
+           errors.push("Select at least two options from 'What did you like most about the campus?'");
+           // Clear the field with error
+           likedControl.setValue({
+             students: false,
+             location: false,
+             campus: false,
+             atmosphere: false,
+             dormRooms: false,
+             sports: false,
+           });
+         }
+       } else {
+         errors.push("Liked options are not available.");
+       }
+   
+       // Check if a radio button option is selected
+       const interestControl = this.surveyForm?.get('interest');
+       if (!interestControl || !interestControl.value) {
+         errors.push("Select an option for 'How did you become interested in the university?'");}
   
           // Display consolidated error message if any
     if (errors.length > 0) {
@@ -113,3 +126,11 @@ export class SurveyFormComponent {
     this.surveyForm.reset();
   }
 }
+function fetchZipData(zipCode: any, string: any) {
+  throw new Error('Function not implemented.');
+}
+
+function updateCityAndState(zipCode: any, string: any) {
+  throw new Error('Function not implemented.');
+}
+

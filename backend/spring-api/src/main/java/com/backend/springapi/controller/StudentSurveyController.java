@@ -1,14 +1,20 @@
 package com.backend.springapi.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Optional;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import com.backend.springapi.model.StudentSurvey;
 //import com.backend.springapi.repository.StudentRepository;
 import com.backend.springapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +58,20 @@ public class StudentSurveyController {
 		}
 
 	}
+
+    @GetMapping("/zipcodes")
+    public ResponseEntity<String> getZipCodes() {
+        try {
+            // Read the content of the zipcodes.json file
+            Resource resource = new ClassPathResource("zipcodes.json");
+            String jsonContent = new String(Files.readAllBytes(Paths.get(resource.getURI())));
+            // Return the JSON content
+            return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(jsonContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 	@PutMapping("/updateStudent/{id}")
     public ResponseEntity<StudentSurvey> updateStudent(@PathVariable("id") Long id, @RequestBody StudentSurvey studentSurvey) {

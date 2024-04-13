@@ -1,5 +1,4 @@
-{
-    "zipcodes":[
+[
         {
         "zip": "22312",
         "city": "Alexandria",
@@ -20,5 +19,5 @@
         "city": "Ashburn",
         "state":"VA"
         }
-    ]
-} 
+]
+ 
