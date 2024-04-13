@@ -1,13 +1,12 @@
 package com.backend.springapi.service;
-
 import com.backend.springapi.model.StudentSurvey;
 import com.backend.springapi.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-//import java.util.Optional;
 
+//The service class holds the businsess logic of our application
+//Uses the StudentRepository object to call the methods in JPA Repository to perform CRUD operations
 @Service
 public class StudentService {
     @Autowired

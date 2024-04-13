@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
+
+//This typescript is responsible for rendering the Home Page Component 
+
 export class HomePageComponent implements OnInit {
   username: string | null = null;
   greeting: string = "";
@@ -14,7 +17,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.username = this.getCookie("username");
-
     const currentdt = new Date();
     const hour = currentdt.getHours();
 

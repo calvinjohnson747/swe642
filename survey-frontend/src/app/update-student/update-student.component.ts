@@ -9,6 +9,9 @@ import { StudentSurvey } from '../survey-list/survey-list.component';
   templateUrl: './update-student.component.html',
   styleUrl: './update-student.component.css'
 })
+
+//This typescript is resposible for rendering the UpdateForm Componenet and it all validates all the input given by the user
+//from the update form. This updates any existing entries in the table
 export class UpdateStudentComponent implements OnInit {
   private submitUrl = 'http://localhost:8080/';
   surveyForm!: FormGroup;

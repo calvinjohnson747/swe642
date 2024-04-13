@@ -7,6 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './survey-form.component.html',
   styleUrl: './survey-form.component.css',
 })
+
+//This typescript is resposible for rendering the SurveyForm Componenet and it all validates all the input given by the user
+//from the survey form
 export class SurveyFormComponent {
   private submitUrl = 'http://localhost:8080/saveStudents';
   surveyForm!: FormGroup;

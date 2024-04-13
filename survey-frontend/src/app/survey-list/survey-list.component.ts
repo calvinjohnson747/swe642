@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+//This typescript is resposible for rendering the Survey-list Componenet 
+//it also holds the delete and update buttons
+
 interface Liked {
   students: boolean;
   location: boolean;

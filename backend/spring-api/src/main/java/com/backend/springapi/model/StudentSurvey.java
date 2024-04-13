@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.*;
 
+//Model Class maps all the variables in it to our sql database columns
+
 @Entity
 @Table(name="StudentSurvey")
 @AllArgsConstructor
@@ -20,7 +22,6 @@ public class StudentSurvey {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 	private String firstName;
 	private String lastName;
 	private String email;
