@@ -27,7 +27,7 @@ export class UpdateStudentComponent implements OnInit {
       lastName: ['', Validators.pattern('^[a-zA-Z ]*$')],
       email: ['', [Validators.required, Validators.email]],
       telephoneNumber: ['', Validators.required],
-      streetAddress: ['', Validators.pattern('^[a-zA-Z0-9\s]*$')],
+      streetAddress: ['', Validators.pattern('^[a-zA-Z0-9\\s]*$')],
       city: ['', Validators.required],
       state: ['', Validators.required],
       zip: ['', [Validators.required, Validators.maxLength(5)]],

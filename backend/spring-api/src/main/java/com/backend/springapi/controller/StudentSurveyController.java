@@ -36,7 +36,6 @@ public class StudentSurveyController {
 		}
 
 		return new ResponseEntity<>(ssList, HttpStatus.OK);
-
 	}
 	@GetMapping("/getStudents/{id}")
     public ResponseEntity<StudentSurvey> getStudentById(@PathVariable Long id) throws Exception {
